@@ -7,7 +7,7 @@ export default class post extends Component {
     render(props) {
         return (
             <div className='post'>   
-                <h5>Novak</h5>
+                <h5>{this.props.user}</h5>
                 <p>
                     {this.props.body}
                 </p>

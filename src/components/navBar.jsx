@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 
 export default class navBar extends Component {
+
+    logOut = () =>
+    {
+        cookies.remove('username', {path : '/'})
+        window.location.href = '/login'
+    }
+
     render() {
         return (
             <nav className='navMain'>
@@ -24,7 +33,7 @@ export default class navBar extends Component {
                 <div className="navItems">
                     <span>Inicio</span>
                     <span>Perfil</span>
-                    <span><FontAwesomeIcon icon={faSignOutAlt} /></span>    
+                    <span onClick={this.logOut}><FontAwesomeIcon icon={faSignOutAlt} /></span>    
                 </div>
 
             </nav>
