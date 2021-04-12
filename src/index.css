@@ -42,6 +42,11 @@ code {
 .navSearch .form-control::placeholder {
   color: white;
 }
+.input-group-prepend button {
+  background-color: rgb(69, 72, 235);
+  border-color: rgb(69, 72, 235);
+  color: white;
+}
 .input-group-text {
   background-color: rgb(69, 72, 235);
   border-color: rgb(69, 72, 235);
@@ -64,6 +69,9 @@ code {
 }
 
 /* Main */
+body {
+  background-color: whitesmoke;
+}
 main {
   background-color: whitesmoke;
   display: flex;

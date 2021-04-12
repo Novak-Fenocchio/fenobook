@@ -14,8 +14,7 @@ export default class posts extends Component {
     {
         super();
         this.state ={
-            posts : [],
-            prebas : ' awsdaw'
+            posts : []
         }
     }
 
@@ -25,14 +24,14 @@ export default class posts extends Component {
         {
             user : cookies.get('username')
         }
-        axios.post('http://localhost:1500/dashboard/user', userToSearchPost)
+   /*      axios.post('http://localhost:1500/dashboard/user', userToSearchPost)
         .then(res => 
             {
                 const postsApi = res.data;
                 this.setState({
                     posts : postsApi
                 })
-            })
+            }) */
     }
     renderPosts = () =>
     {
@@ -60,7 +59,6 @@ export default class posts extends Component {
     render() {
         return (
             <div className='containerPosts'>
-
                 <FormPoster  addPost={this.addPost}/>
                  <h3 className='headerwelcome'>Bienvenido, <strong>{cookies.get('username')}</strong></h3>
                    {this.renderPosts()}

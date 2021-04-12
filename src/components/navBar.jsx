@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import {BrowserRouter, Switch, Route, Link, Router} from 'react-router-dom';
+
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -13,6 +15,13 @@ export default class navBar extends Component {
         window.location.href = '/login'
     }
 
+    searchUser = (e) =>
+    {
+        e.preventDefault();
+        const userToSearch = e.target.elements.username.value;
+        window.location.href = `/users/${userToSearch}`;
+    }
+
     render() {
         return (
             <nav className='navMain'>
@@ -22,20 +31,22 @@ export default class navBar extends Component {
                 </div>
                 
                 <div className="navSearch">
-                    <div className="input-group inputNavSearch">
-                        <div className="input-group-prepend">
-                            <span className="input-group-text" id="basic-addon1">@</span>
+                    <form action="" onSubmit={this.searchUser}>
+
+                    <div class="input-group inputNavSearch">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                         </div>
-                        <input type="text" className="form-control" placeholder="Buscar un usuario..." aria-label="Username" aria-describedby="basic-addon1"></input>
-                    </div>  
+                        <input type="text" class="form-control" name='username' placeholder="Buscar un usuario..." aria-label="" aria-describedby="basic-addon1"></input>
+                    </div>
+                    </form>
                 </div>
 
                 <div className="navItems">
-                    <span>Inicio</span>
-                    <span>Perfil</span>
+                    <Link to="/posts"><span>Inicio</span></Link>
+                    <Link to='/perfil'><span>Perfil</span></Link>
                     <span onClick={this.logOut}><FontAwesomeIcon icon={faSignOutAlt} /></span>    
                 </div>
-
             </nav>
         )
     }

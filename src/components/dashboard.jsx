@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 /* Components */
 import NavBar from './navBar';
 import FormSignIn from './signIn';
 import Post from './smallComponents/post';
-import Cok from './cok';
 import Posts from './posts';
+import Profile from './profile';
 
 import '../index.css';
 
@@ -21,15 +21,14 @@ export default class dashboard extends Component {
         super();
         this.state = {
             posts : [],
-            user : '',
-            prebas: 'aaa'
+            user : ''
         }
-        this.handleCharge=this.handleCharge.bind(this);
     }
 
-     getPosts = () =>
+    /* Get post by user */
+     getPostsByUser = () =>
     {
-        const userToSearchPost = 
+     /*    const userToSearchPost = 
         {
             user : cookies.get('username')
         }
@@ -40,12 +39,13 @@ export default class dashboard extends Component {
                 this.setState({
                     posts : postsApi
                 })
-            })
+            }) */
     } 
 
+    /* Generate the posts */
     renderPosts = () =>
     {
-        this.getPosts();
+        this.getPostsByUser();
        
         return this.state.posts.map(post => {
             return (
@@ -54,25 +54,14 @@ export default class dashboard extends Component {
             })  
     }
 
-    funcionaYUDA = (data ) =>
-    {
-        const postsRecividos = data;
-        console.log(postsRecividos);
-        this.setState({
-            prebas : postsRecividos
-        })
-    }
-
-    
-
-    handleCharge =  (e) =>
+    /* Login  */
+    signIn =  (e) =>
     {
         e.preventDefault();
         const userToSignIn = {
             username : e.target.elements.username.value,
             password : e.target.elements.password.value
         }
-        let ada = undefined;
         axios.post('http://localhost:1500/user/signIn/', userToSignIn )
      
         .then(res => { return res.data})
@@ -82,8 +71,6 @@ export default class dashboard extends Component {
                 const respuesta = res[0];
                 cookies.set('id', respuesta.id, {path : '/'});
                 cookies.set('username', respuesta.username, {path : '/'});
-                cookies.set('password', respuesta.password, {path : '/'});
-                alert(`Welcome ${respuesta.username}, your password is ${respuesta.password}`)
                 window.location.href = '/posts';
             }else{
                 alert('User no found')
@@ -96,36 +83,24 @@ export default class dashboard extends Component {
 
     render() {
         return (
-            <div>
-              <NavBar/>
-              <main>
-                  <div className="">
-                    {/* 
-                      */}
-{/*                         <input type="text" onChange={this.handleCharge} name='ida'/>
-                        <button type='submit' onChange={this.handleCharge}> addd </button>
- */}
+            <BrowserRouter>
+             <Switch>
+                <div>
+                    <NavBar/>
+                            <main>
+                                <div className="">
+                                    <Route exact path="/login">                    
+                                        <FormSignIn signIn={this.signIn}/>
+                                    </Route>
 
-                  <BrowserRouter>
-                    
-                        <Switch>
-                            <Route path='/login'>                    
-                                <Cok dd='aaa' dale={this.handleCharge}/>
-                                <FormSignIn dale={this.handleCharge}/>
-                            </Route>
-                            
-                            <Route path='/posts'>
-           
-                                <Posts />
-                           </Route>
-                        
-                        </Switch>
-
-                    </BrowserRouter> 
-
-                 </div>
-              </main>
-            </div>
+                                    <Route exact path='/posts' component={Posts}/>
+                                    <Route exact path='/users/:user' render={(props) => <Profile {...props}/>} />
+                                    
+                                </div>
+                            </main>
+                </div>
+              </Switch>
+            </BrowserRouter> 
         )
     }
 }

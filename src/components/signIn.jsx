@@ -4,7 +4,7 @@ const signIn = (props) =>
 {
     return(
         <div>
-            <form method="POST" onSubmit={props.dale}>
+            <form method="POST" onSubmit={props.signIn}>
                 <input type="text" name='username' />
                 <input type="text" name='password'/>
                 <button type='submit' >SignIn</button>
