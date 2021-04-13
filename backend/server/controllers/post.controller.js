@@ -3,8 +3,8 @@ const PostModel = require('../models/post.model');
 exports.getPosts = async(req, res) =>
 {
     const allPost = await PostModel.find();
-/*     console.log(allPost);
- */    res.json(allPost);
+    console.log(allPost);
+    res.json(allPost);
 }
 exports.getPostsUser = async(req, res) =>
 {

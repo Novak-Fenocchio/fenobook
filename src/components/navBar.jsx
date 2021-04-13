@@ -12,7 +12,7 @@ export default class navBar extends Component {
     logOut = () =>
     {
         cookies.remove('username', {path : '/'})
-        window.location.href = '/login'
+        window.location.href = '/dashboard/login'
     }
 
     searchUser = (e) =>

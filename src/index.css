@@ -62,6 +62,8 @@ code {
   text-align: right;
 }
 .navItems span {
+  color: white;
+
   font-size: 1.5vw;
   font-weight: lighter;
   margin-left: 1vw;
@@ -174,4 +176,95 @@ main > div {
 .meGusta span {
   font-size: 1.8vw;
   margin-right: 0.5vw;
+}
+.postDate {
+  color: rgb(99, 99, 99);
+  margin-bottom: 1.5vw;
+}
+.post h3 {
+  text-transform: capitalize;
+}
+.post p {
+  color: black;
+  font-size: 1.5vw;
+}
+.postHeader {
+  display: grid;
+  grid-template-columns: 8% 80%;
+}
+.post img {
+  width: 100%;
+}
+.postHeaderText {
+  padding-left: 2vw;
+}
+
+/* Sign */
+.container-sign {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  height: 100vh;
+  width: 100vw;
+}
+.logForm {
+  background-color: white;
+  text-align: center;
+  padding-top: 5vw;
+}
+.logForm h3 {
+  margin-bottom: 2vw;
+}
+.logForm input {
+  background-color: rgb(96, 98, 243);
+  border: 2px solid rgb(96, 98, 243);
+  border-radius: 5px;
+  color: white;
+  font-size: 1.4vw;
+  padding: 0.7vw 2vw 0.7vw 1vw;
+  margin-bottom: 1vw;
+  width: 60%;
+}
+.logForm input[type="password"] {
+  color: black;
+}
+.logForm input::placeholder {
+  color: rgb(196, 196, 196);
+  font-size: 1.2vw;
+}
+.logForm button {
+  background-color: rgb(39, 41, 158);
+  border: 2px solid rgb(39, 41, 158);
+  border-radius: 5px;
+  color: white;
+  margin-top: 2vw;
+  padding: 0.5vw 1vw;
+  width: 40%;
+}
+.logForm span {
+  color: black;
+  display: block;
+  margin-top: 2vw;
+}
+.alreadyHaveAccount a {
+  color: rgb(69, 72, 235);
+  font-weight: bold;
+}
+.formImage {
+  background-image: url("https://fondosmil.com/fondo/34283.jpg");
+  background-size: cover;
+}
+.formImage div {
+  align-items: center;
+  background-color: rgba(69, 72, 235, 0.616);
+  display: flex;
+  justify-content: center;
+  color: white;
+  height: 100vh;
+}
+.formImage div h1 {
+  font-size: 3.5vw;
+  font-weight: lighter;
+}
+.formImage div h1 span {
+  font-weight: bold;
 }
