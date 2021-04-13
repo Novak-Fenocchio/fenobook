@@ -15,10 +15,10 @@ export default class signUp extends Component {
             username: username.value,
             password: password.value
         })
+        
 
         axios.post('http://localhost:1500/user/signUp', newUser)
-        .then(() => alert('SUCCESSFULLY'))
-        .then(() => window.location.href='dashboard/posts')
+        .then(() => window.location.href='/signIn')
         .catch(err => console.log(err))
     }
 
@@ -32,7 +32,7 @@ export default class signUp extends Component {
                         <input type="password" name="password" placeholder='Contraseña' autoComplete='off' id=""/> <br/>
                         <input type="password" name="repeatpassword" placeholder='Repetir contraseña' autoComplete='off' id=""/> <br/>
                         <button type='submit'>Entrar</button> <br/>
-                        <span className='alreadyHaveAccount'>Ya tienes cuenta? <a href="">Inicia sesion</a></span>
+                        <span className='alreadyHaveAccount'>Ya tienes cuenta? <a href="/signIn">Inicia sesion</a></span>
                     </form>
                 </div>
                 <div className="formImage">

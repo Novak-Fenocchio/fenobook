@@ -17,14 +17,18 @@ const signIn = (props) =>
          }
          axios.post('http://localhost:1500/user/signIn/', userToSignIn )
       
-         .then(res => { return res.data})
+         .then(res => { 
+            console.log(res.data);     
+            return res.data
+        })
          .then(res => {
              if(res.length>0)
              {
                  const respuesta = res[0];
-                 cookies.set('id', respuesta.id, {path : '/'});
+                 cookies.set('id', respuesta._id, {path : '/'});
                  cookies.set('username', respuesta.username, {path : '/'});
-                 window.location.href = '/dashboard/posts';
+                 cookies.set('avatar', respuesta.avatar, {path : '/'});
+                  window.location.href = '/dashboard/posts';
              }else{
                  alert('User no found')
              }
@@ -42,7 +46,7 @@ const signIn = (props) =>
                 <input type="text" name="username" placeholder='Nombre de usuario' autoComplete='off' id=""/> <br/>
                 <input type="password" name="password" placeholder='Contraseña' autoComplete='off' id=""/> <br/>
                 <button type='submit'>Entrar</button> <br/>
-                <span className='alreadyHaveAccount'>No tienes cuenta? <a href="">Registrate</a></span>
+                <span className='alreadyHaveAccount'>No tienes cuenta? <a href="/signUp">Registrate</a></span>
             </form>
         </div>
         <div className="formImage">

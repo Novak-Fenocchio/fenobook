@@ -268,3 +268,30 @@ main > div {
 .formImage div h1 span {
   font-weight: bold;
 }
+/* Profiles */
+.background-profile {
+  background-image: url("https://fondosmil.com/fondo/34283.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 30vh;
+  width: 100vw;
+}
+.containerImageAvatar {
+  position: absolute;
+  text-align: center;
+  top: 18%;
+  width: 100vw;
+}
+.imageAvatar {
+  background: rgba(0, 0, 0, 0.548);
+  border: 4px solid white;
+  border-radius: 50%;
+  padding: 2vw 2vw;
+  top: 20%;
+  left: 40%;
+}
+.nameUser {
+  font-size: 4vw;
+  font-weight: bolder;
+  text-transform: capitalize;
+}

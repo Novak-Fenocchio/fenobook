@@ -1,4 +1,7 @@
 const PostModel = require('../models/post.model');
+const userModel = require('../models/user.model');
+const UserModel = require('../models/user.model');
+
 
 exports.getPosts = async(req, res) =>
 {
@@ -6,11 +9,13 @@ exports.getPosts = async(req, res) =>
     console.log(allPost);
     res.json(allPost);
 }
-exports.getPostsUser = async(req, res) =>
+
+exports.getPostsUserById = async(req, res) =>
 {
-    const user = req.body.user;
-    console.log(user);
-    const allPostUser = await PostModel.find({user: user});
+    const id = req.body.id;
+    console.log('eea');
+    const user = await userModel.findById(id);
+    const allPostUser = await PostModel.find({user: user.username});
     console.log(allPostUser);
     res.json(allPostUser); 
 }
@@ -18,11 +23,12 @@ exports.getPostsUser = async(req, res) =>
 /* Add post */
 exports.addPost = async(req, res) =>
 {
-    const {user, body} = req.body;
+    const {user, body, avatarUser} = req.body;
 
     const newPost = new PostModel({
         body: body,
-        user: user
+        user: user,
+        avatarUser: avatarUser
     })
 
     await newPost.save()

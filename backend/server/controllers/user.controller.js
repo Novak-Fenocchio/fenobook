@@ -19,3 +19,17 @@ exports.signIn = async(req,res) =>
     const userToLogin = await userModel.find({username, password})
     res.json(userToLogin)   
 }
+exports.searchUserByName = async(req, res) =>
+{
+    const {username} = req.body;
+    const userFounded = await userModel.find({username: username})
+    console.log(userFounded);
+    res.json(userFounded)
+}
+exports.searchUser = async(req, res) =>
+{
+    const {id} = req.body;
+    const userFounded = await userModel.findById(id)
+    console.log(userFounded);
+    res.json(userFounded)
+}

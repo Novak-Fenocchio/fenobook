@@ -7,7 +7,9 @@ import Cookies from 'universal-cookie';
 import NavBar from './navBar';
 import Post from './smallComponents/post';
 import Posts from './posts';
-import Profile from './profile';
+import Profile from './profileClass';
+import ProfileMine from './profileMine';
+
 
 import '../index.css';
 
@@ -62,7 +64,8 @@ export default class dashboard extends Component {
                             <main>
                                 <div className="">
                                     <Route  path='/dashboard/posts' component={Posts}/>
-                                    <Route exact path='/users/:user' render={(props) => <Profile {...props}/>} />
+                                    <Route exact path='/dashboard/users/' render={(props) => <Profile {...props}/>} />
+                                    <Route exact path='/dashboard/myUser/' render={(props) => <ProfileMine {...props}/>} />
                                 </div>
                             </main>
                 </div>

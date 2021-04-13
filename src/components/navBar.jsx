@@ -12,14 +12,16 @@ export default class navBar extends Component {
     logOut = () =>
     {
         cookies.remove('username', {path : '/'})
-        window.location.href = '/dashboard/login'
+        window.location.href = '/signIn'
     }
 
     searchUser = (e) =>
     {
         e.preventDefault();
         const userToSearch = e.target.elements.username.value;
-        window.location.href = `/users/${userToSearch}`;
+        cookies.set('usuarioParaBuscar', userToSearch, {Path: '/'});
+        console.log(cookies.get('usuarioParaBuscar'));
+        window.location.href = `/dashboard/users`;
     }
 
     render() {
@@ -43,8 +45,8 @@ export default class navBar extends Component {
                 </div>
 
                 <div className="navItems">
-                    <Link to="/posts"><span>Inicio</span></Link>
-                    <Link to='/perfil'><span>Perfil</span></Link>
+                    <Link to="/dashboard/posts"><span>Inicio</span></Link>
+                    <Link to='/dashboard/myUser'><span>Perfil</span></Link>
                     <span onClick={this.logOut}><FontAwesomeIcon icon={faSignOutAlt} /></span>    
                 </div>
             </nav>

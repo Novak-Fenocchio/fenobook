@@ -29,6 +29,7 @@ export default class post extends Component {
             <div className='post'> 
             
             <div className="postHeader">
+                
                 <img width='100%' src={this.state.avatar[this.props.avatar]} alt=""/>  
                 <div className="postHeaderText">
                     <h3>{this.props.user}</h3>
