@@ -3,6 +3,8 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 import Post from './smallComponents/post';
+import Modal from './smallComponents/modal'
+
 const cookies = new Cookies();
 
 export default class profileMine extends Component {
@@ -13,7 +15,7 @@ export default class profileMine extends Component {
         this.state = {
             userID: cookies.get('id'),
             username: cookies.get('username'),
-            useravatar: cookies.get('avatar'),
+            useravatar: cookies.get('avatar') -1,
             images : [
                 'https://image.flaticon.com/icons/png/128/2922/2922510.png',
                 'https://image.flaticon.com/icons/png/128/2922/2922515.png',
@@ -35,16 +37,13 @@ export default class profileMine extends Component {
     componentDidMount()
     {
        this.getPosts()
-       console.log(cookies.getAll);
-        
-    }
+    }   
 
     getPosts = () =>
     {
         const user = {
             id: this.state.userID
         }
-        console.log(user);
         axios.post('http://localhost:1500/dashboard/user', user)
         .then(res => {
             this.setState({
@@ -61,9 +60,16 @@ export default class profileMine extends Component {
             let datePost =  post.createdAt.slice(0,10);
                
             return (
-            <Post user={post.user} body={post.body} avatar={post.avatarUser} date={datePost}  />
+            <Post user={post.user} body={post.body} avatar={post.avatarUser -1} date={datePost}  />
            ) }
         )
+    }
+
+    changedAvatar = () =>
+    {
+        this.setState({
+            useravatar: cookies.get('avatar')-1
+        })
     }
 
     render() {
@@ -74,10 +80,36 @@ export default class profileMine extends Component {
                     <img src={this.state.images[this.state.useravatar]} className="imageAvatar"/>
                 </div>  
             </header>
-            <div className='containerPosts'>
-                <h1 className='my-3 nameUser'>{this.state.username}</h1>
-                    <div className="containerPosts">
-                    {this.renderPosts()}
+            <div className='containerPosts mainProfileMain'>
+                    
+                <div className="header-info-profile">
+                    <h1 className='my-3 nameUser'>{this.state.username}</h1>
+                    <Modal button='Cambiar avatar' type='avatarSelector' changed={this.changedAvatar} array={this.state.images} buttonClass='btnWhite btnChangeAvatar' title='Seleccionar un avatar' message='' cancel='Cancelar' accept='Guardar'/>
+                </div>
+
+                <div className="containerProfileMine">
+
+                    <div className="profileBiography">
+                        <h3>Biografía:</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui harum tenetur provident aliquam quidem excepturi ea, dicta eos eveniet blanditiis!  
+                        </p>
+                        
+                        <hr/>
+                        <p className='seguidores'>6 seguidores</p>
+                        <p className='seguidores'>3 seguidos</p>
+
+                        <hr/>
+                        <h4>Se unió en:</h4>
+                        <p>2021-4-12</p>
+                        
+
+                    </div>
+                    
+                    <div className="containerPosts postProfile">
+                        {this.renderPosts()}
+                    </div>
+                
                 </div>
             </div>
 

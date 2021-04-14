@@ -20,8 +20,8 @@ function App() {
         <Switch>
           <Route path='/dashboard' component={Dashboard}/>
           <Route path='/signIn' component={FormSignIn}/>
+          <Route exact path='/' component={FormSignIn}/>
           <Route exact path='/signUp' component={FormSignUp}/>
-          
         </Switch>
       
       </BrowserRouter>

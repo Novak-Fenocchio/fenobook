@@ -4,6 +4,7 @@ import Cookies from 'universal-cookie';
 
 import Post from './smallComponents/post';
 import FormPoster from './formPoster';
+import Alert from './smallComponents/alert';
 
 const cookies = new Cookies();
 
@@ -28,7 +29,8 @@ export default class posts extends Component {
                 'https://image.flaticon.com/icons/png/128/2922/2922624.png',
                 'https://image.flaticon.com/icons/png/128/2922/2922671.png'
             ],
-            avatarOfPost: ''
+            avatarOfPost: '',
+            haveAvatar: false
             }
     }
 
@@ -40,18 +42,44 @@ export default class posts extends Component {
                 const postsApi = res.data;
                 this.setState({
                     posts : postsApi
+
                 })
             }) 
             .catch(err => console.log(err))
+
+            const prueba = cookies.get('avatar')
+     
+            if(prueba == 'undefined')
+         {
+            this.setState({
+                haveAvatar: false
+            })
+         }else
+         {
+            this.setState({
+                haveAvatar: true
+            })
+         }
+
     }
 
     renderPosts = () =>
     {
         return this.state.posts.map(post => {
             let datePost =  post.createdAt.slice(0,10);
-            console.log(post);
+
+            const usersLikes = post.likesUsers;
+            let likeOrDont = usersLikes.includes(cookies.get('username'))
+
             return (
-                <Post user={post.user} body={post.body} avatar={post.avatarUser} date={datePost}/>
+                <Post 
+                    type='usersLikes'
+                    user={post.user} 
+                    body={post.body} 
+                    avatar={post.avatarUser -1} 
+                    idPost={post._id} date={datePost} 
+                    likes={post.likes} liked={likeOrDont} 
+                    usersLikes={usersLikes}/>
                 )
             })  
     }
@@ -71,12 +99,20 @@ export default class posts extends Component {
         
     }   
 
-  
+    
 
     render() {
         return (
-            <div className='containerPosts'>
+            <div className='containerPosts '>
                 <FormPoster  addPost={this.addPost}/>
+
+                {/* Advise of select avatar */}
+                {this.state.haveAvatar == false &&
+                <div className="">
+                    <Alert />
+                </div>
+                }
+    
                  <h3 className='headerwelcome'>Bienvenido, <strong>{cookies.get('username')}</strong></h3>
                    {this.renderPosts()}
             </div>

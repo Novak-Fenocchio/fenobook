@@ -4,6 +4,9 @@
   padding: 0;
   transition: all 0.3s;
 }
+a {
+  color: white;
+}
 *,
 *:focus {
   outline: none;
@@ -21,7 +24,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+/* utilities */
+.btnOff {
+  background-color: inherit;
+  border: none;
+}
+.hidde {
+  display: none;
+}
 /* nav */
 .navMain {
   background-color: rgb(39, 41, 158);
@@ -170,8 +180,24 @@ main > div {
   color: rgb(39, 41, 158);
   font-weight: bolder;
 }
+.likeAmount {
+  border-right: 2px solid rgb(96, 98, 243);
+  padding-right: 1vw;
+}
+.imageThumbsUp {
+  display: inline;
+  padding-left: 1vw;
+}
+.buttonLike {
+  background-color: rgba(255, 0, 0, 0);
+  border: 0;
+}
+.buttonLike:focus {
+  background-color: rgba(255, 0, 0, 0);
+  outline: none;
+}
 .postAction:hover {
-  transform: scale(1.05);
+  transition: all 0.01s;
 }
 .meGusta span {
   font-size: 1.8vw;
@@ -198,7 +224,16 @@ main > div {
 .postHeaderText {
   padding-left: 2vw;
 }
-
+.postAction {
+  display: flex;
+  justify-content: space-between;
+}
+.postAction form {
+  margin: 0;
+  width: 50%;
+}
+.btnVerLikes {
+}
 /* Sign */
 .container-sign {
   display: grid;
@@ -274,13 +309,50 @@ main > div {
   background-size: cover;
   background-position: center;
   height: 30vh;
-  width: 100vw;
+  width: 100%;
+}
+.header-info-profile {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.header-info-profile h1 {
+}
+.header-info-profile .btnChangeAvatar {
+  height: 50%;
+}
+
+.containerProfileMine {
+  display: grid;
+  grid-template-columns: 30% 90%;
+}
+.postProfile {
+  margin: 0;
+}
+.mainProfileMain {
+  width: 90%;
+}
+.profileBiography {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1vw 2vw;
+}
+.profileBiography h3 {
+  margin-top: 1vw;
+  margin-bottom: 1.5vw;
+}
+.seguidores {
+  margin-bottom: 0.5vw;
 }
 .containerImageAvatar {
   position: absolute;
   text-align: center;
   top: 18%;
-  width: 100vw;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 10vh;
+  width: 20%;
 }
 .imageAvatar {
   background: rgba(0, 0, 0, 0.548);
@@ -294,4 +366,31 @@ main > div {
   font-size: 4vw;
   font-weight: bolder;
   text-transform: capitalize;
+}
+/* Select avatar */
+.container-avatar-selector {
+  display: grid;
+  column-gap: 1vw;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 2vw;
+  row-gap: 1vw;
+}
+.container-avatar-selector img {
+  width: 100%;
+}
+.container-avatar-selector img:hover {
+  transform: scale(1.1);
+}
+.btnChangeAvatarSelector:focus {
+  background-color: rgba(0, 0, 0, 0.452);
+  border-radius: 50%;
+  transform: scale(1.7);
+  padding: 1vw;
+}
+/* user like */
+.listLikes {
+  padding-left: 2vw;
+}
+.userLike {
+  color: rgb(65, 65, 65);
 }

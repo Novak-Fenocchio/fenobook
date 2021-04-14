@@ -33,3 +33,12 @@ exports.searchUser = async(req, res) =>
     console.log(userFounded);
     res.json(userFounded)
 }
+
+/* Edit avatar */
+exports.changeAvatar = async(req,res) =>
+{
+    console.log('------Change Avatar---------------');
+    const {id, avatar} = req.body;
+    const user = await userModel.findByIdAndUpdate(id, {avatar : avatar})
+    console.log('------Change Avatar---------------');
+}

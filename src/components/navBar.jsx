@@ -29,7 +29,7 @@ export default class navBar extends Component {
             <nav className='navMain'>
 
                 <div className="navTitle">
-                  <span>feno<strong>Book</strong></span>
+                <Link to='/dashboard/posts'><span>feno<strong>Book</strong></span></Link>
                 </div>
                 
                 <div className="navSearch">

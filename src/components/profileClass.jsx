@@ -94,13 +94,33 @@ export default class profileClass extends Component {
                     <img src={this.state.images[this.state.useravatar]} className="imageAvatar"/>
                 </div>  
             </header>
-            <div className='containerPosts'>
+            <div className='containerPosts mainProfileMain'>
                 <h1 className='my-3 nameUser'>{this.state.username}</h1>
-                <div className="containerPosts">
-                    {this.renderPosts()}
-                </div>
-            </div>
+               
+                <div className="containerProfileMine">
 
+                    <div className="profileBiography">
+                        <h3>Biografía:</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui harum tenetur provident aliquam quidem excepturi ea, dicta eos eveniet blanditiis!  
+                        </p>
+                        
+                        <hr/>
+                        <p className='seguidores'>6 seguidores</p>
+                        <p className='seguidores'>3 seguidos</p>
+
+                        <hr/>
+                        <h4>Se unió en:</h4>
+                        <p>2021-4-12</p>
+                        
+
+                    </div>
+
+                    <div className="containerPosts">
+                        {this.renderPosts()}
+                    </div>
+            </div>
+            </div>
         </div>
         )
     }
