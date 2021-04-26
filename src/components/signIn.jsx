@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import md5 from 'md5';
 const cookies = new Cookies();
 
 
@@ -13,7 +14,7 @@ const signIn = (props) =>
       
          const userToSignIn = {
              username : e.target.elements.username.value,
-             password : e.target.elements.password.value
+             password : md5(e.target.elements.password.value)
          }
          axios.post('http://localhost:1500/user/signIn/', userToSignIn )
       

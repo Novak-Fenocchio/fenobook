@@ -20,6 +20,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (min-width: 1000px) {
+  .buttonMyProfile {
+    display: none;
+  }
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -393,4 +398,52 @@ main > div {
 }
 .userLike {
   color: rgb(65, 65, 65);
+}
+/* Card user follow */
+.container-user-card {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 2vw;
+  padding: 1vw 2vw;
+  margin: auto;
+  width: 70%;
+}
+.user-card-tofollow {
+  background-color: rgb(39, 41, 158);
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  padding: 1vw;
+  box-shadow: 0 0px 2.2px rgba(0, 0, 0, 0.02), 0 0px 5.3px rgba(0, 0, 0, 0.028),
+    0 0px 10px rgba(0, 0, 0, 0.035), 0 0px 17.9px rgba(0, 0, 0, 0.042),
+    0 0px 33.4px rgba(0, 0, 0, 0.05), 0 0px 80px rgba(0, 0, 0, 0.07);
+}
+.user-card-tofollow-off {
+  display: none;
+}
+.user-card-tofollow img {
+  background-color: rgb(235, 234, 234);
+  border-radius: 50%;
+  margin-bottom: 1.5vw;
+  padding: 1vw;
+  width: 80%;
+}
+.BtnNotFollow {
+  color: white;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  color: black;
+  font-weight: bold;
+  padding: 0.2vw;
+  width: 50%;
+}
+.user-card-tofollow h5 {
+}
+.BtnNotFollow:hover {
+  transform: scale(1.1);
+}
+.yetNotFollowing {
+  text-align: center;
+  font-weight: bold;
 }

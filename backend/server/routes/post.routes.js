@@ -6,7 +6,7 @@ const postCtrl = require('../controllers/post.controller');
 
 /* Get post */
 route.post('/post', postCtrl.getAPost);
-route.get('/', postCtrl.getPosts);
+route.post('/', postCtrl.getPostsUsersById);
 route.post('/user', postCtrl.getPostsUserById);
 
 /* Add post */

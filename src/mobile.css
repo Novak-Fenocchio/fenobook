@@ -1,0 +1,110 @@
+@media (max-width: 1000px) {
+  /* Nav */
+  .navMain {
+    align-items: center;
+    grid-template-columns: 30% 70%;
+    padding: 2vw 2vw;
+  }
+  .navTitle {
+    font-size: 5vw;
+  }
+  .navItems {
+    display: none;
+  }
+  /* add Posts */
+  .containerPosts {
+    width: 95vw;
+  }
+  .container-form-poster {
+    border-radius: 4px;
+    margin-top: 5vw;
+    width: 100%;
+  }
+  .container-form-poster button {
+    font-size: 3vw;
+    padding: 0.1vw 1vw 5vw;
+  }
+  .container-form-poster textarea {
+    padding: 0.5vw 2vw 1vw 1.5vw;
+  }
+  /* Posts */
+  .headerwelcome {
+    display: flex;
+    justify-content: space-between;
+    margin: 4vw 2vw;
+  }
+  .postHeader {
+    grid-template-columns: 11% 80%;
+  }
+  .post {
+    margin-bottom: 5vw;
+  }
+  .post img {
+    margin-top: 3vw;
+  }
+  .postDate {
+    font-size: 2.5vw;
+    padding-left: 1vw;
+  }
+  .post h3 {
+    margin-bottom: 0.5vw;
+  }
+  .post p {
+    font-size: 5.5vw;
+    margin-top: 1vw;
+    padding: 1vw 2vw;
+  }
+  .buttonLike {
+    width: 110%;
+  }
+  .meGusta span {
+    font-size: 4.8vw;
+    margin-right: 0.5vw;
+  }
+  .imageThumbsUp {
+    display: inline;
+    padding-left: 3vw;
+    padding-right: 1vw;
+  }
+  .likeAmount {
+    padding-right: 2vw;
+  }
+  /* Follow people */
+  .container-user-card {
+    width: 91%;
+  }
+  .user-card-tofollow {
+    border-radius: 9px;
+    padding: 2vw 2vw;
+  }
+  .BtnNotFollow {
+    margin: 3vw 0;
+    width: 83%;
+  }
+
+  /* Profile */
+  .containerProfileMine {
+    display: block;
+  }
+  .containerImageAvatar {
+    width: 33%;
+  }
+  .profileBiography {
+    margin-bottom: 6vw;
+  }
+  .nameUser {
+    font-size: 7vw;
+  }
+  .btnVerLikes {
+    margin: 0vw 1vw 2vw;
+  }
+  .buttonMyProfile {
+    background-color: rgb(39, 41, 158);
+    border: 2px solid rgb(39, 41, 158);
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    font-size: 3.3vw;
+    padding: 1vw 2vw;
+  }
+}

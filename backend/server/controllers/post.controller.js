@@ -12,16 +12,43 @@ exports.getAPost = async(req,res) =>
 
 exports.getPosts = async(req, res) =>
 {
-    const allPost = await PostModel.find().sort({ createdAt: -1});
+
+/*     const allPost = await PostModel.find().sort({ createdAt: -1});*/
+    const allPost = await userModel.find({id: req.body[1]});
+    
+    console.log(allPost);
+    
     res.json(allPost);
 }
+
+exports.getPostsUsersById = async(req, res) =>
+{
+    console.log('-----getPostsUsersById----------');
+    console.log(req.body);
+
+    const user = await userModel.find({_id : req.body});
+   
+    const listFollowing = []
+
+
+    user.map(user =>{
+        const addFollowArray = listFollowing.push(user.username);
+    })
+
+    console.log(listFollowing);
+
+    const allPostUser = await PostModel.find({user: listFollowing}).sort({createdAt: -1 });
+   
+    res.json(allPostUser); 
+    console.log('-----getPostsUsersById----------');
+}
+
 
 exports.getPostsUserById = async(req, res) =>
 {
     const id = req.body.id;
     const user = await userModel.findById(id);
     const allPostUser = await PostModel.find({user: user.username}).sort({createdAt: -1 });
-    console.log('eeee');
     res.json(allPostUser); 
 }
 
@@ -86,9 +113,6 @@ exports.giveLike = async(req, res) =>
 
     res.send('like')
 }
-
-
-
 exports.giveDislike = async(req, res) =>
 {
     console.log('----------------DISLIKE--------------------');

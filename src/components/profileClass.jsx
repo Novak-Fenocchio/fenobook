@@ -11,7 +11,7 @@ export default class profileClass extends Component {
     {
         super();
         this.state = {
-            userID: '607421b71233fd3e643600a6',
+            userID: 0,
             username: cookies.get('usuarioParaBuscar'),
             useravatar: '',
             images : [
@@ -28,6 +28,12 @@ export default class profileClass extends Component {
                 'https://image.flaticon.com/icons/png/128/2922/2922671.png'
             ],
             posts: [],
+            followers: [],
+            followersUsernames: [],
+            followersAmount: 0,
+            followingID: [],
+            followingAmount: 0,
+            dateIntro: 0
         } 
     }
 
@@ -42,7 +48,6 @@ export default class profileClass extends Component {
            this.userData(res.data);
        })
        .catch(err => console.log(err))
-
     }
 
     getPosts = () =>
@@ -50,7 +55,6 @@ export default class profileClass extends Component {
         const user = {
             id: this.state.userID
         }
-        console.log(user);
         axios.post('http://localhost:1500/dashboard/user', user)
         .then(res => {
             this.setState({
@@ -60,17 +64,52 @@ export default class profileClass extends Component {
         .catch(err => console.log(err))
     }
 
+    getFollows = () =>
+    {
+        const userID = {
+            userID : this.state.userID
+        }
+        console.log(this.state.userID);
+        axios.post('http://localhost:1500/user/getFollowers', userID)
+        .then(res => {
+            this.setState({
+                followers: res.data.followers,
+                followingID: res.data.following,
+                followingAmount: res.data.following.length
+            })
+
+            this.state.followers.map(follower => {
+                let userToSearch = {
+                    id: follower
+                }
+              axios.post('http://localhost:1500/user/searchUser', userToSearch) 
+                .then(res => {
+                    
+                    const newArray = this.state.followersUsernames;
+                    const newwArray = newArray.push(res.data.username)
+                    this.setState({
+                        followersAmount: this.state.followersUsernames.length
+                    })
+                })
+            })
+
+        })
+    }
+
 
     userData = (data) =>
     {
-        const {_id, username, avatar} = data[0];
-        console.log(data);
+        console.log(data[0]._id);
+        const {_id, username, avatar, followers, createdAt} = data[0];
         this.setState({
             userID: _id,
             username: username,
-            useravatar: avatar
+            useravatar: avatar,
+            followers: followers,
+            dateIntro: createdAt
         })
-       this.getPosts()
+        this.getPosts()
+        this.getFollows()
 
     }
 
@@ -106,8 +145,8 @@ export default class profileClass extends Component {
                         </p>
                         
                         <hr/>
-                        <p className='seguidores'>6 seguidores</p>
-                        <p className='seguidores'>3 seguidos</p>
+                        <p className='seguidores'>{this.state.followersAmount} seguidores</p>
+                        <p className='seguidores'>{this.state.followingAmount} seguidos</p>
 
                         <hr/>
                         <h4>Se unió en:</h4>
@@ -116,7 +155,7 @@ export default class profileClass extends Component {
 
                     </div>
 
-                    <div className="containerPosts">
+                    <div className="containerPosts postProfile">
                         {this.renderPosts()}
                     </div>
             </div>

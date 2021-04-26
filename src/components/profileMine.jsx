@@ -30,13 +30,18 @@ export default class profileMine extends Component {
                 'https://image.flaticon.com/icons/png/128/2922/2922671.png'
             ],
             posts: [],
-            prueba: cookies.get('usuarioParaBuscar'),
+            followers: [],
+            followersUsernames: [],
+            followersAmount: 0,
+            followingID: [],
+            followingAmount: 0        
         } 
     }
 
     componentDidMount()
     {
        this.getPosts()
+       this.getFollows()
     }   
 
     getPosts = () =>
@@ -51,6 +56,37 @@ export default class profileMine extends Component {
             })
         })
         .catch(err => console.log(err))
+    }
+
+    getFollows = () =>
+    {
+        const userID = {
+            userID : this.state.userID
+        }
+
+        axios.post('http://localhost:1500/user/getFollowers', userID)
+        .then(res => {
+            this.setState({
+                followers: res.data.followers,
+                followingID: res.data.following,
+                followingAmount: res.data.following.length
+            })
+            this.state.followers.map(follower => {
+                let userToSearch = {
+                    id: follower
+                }
+              axios.post('http://localhost:1500/user/searchUser', userToSearch) 
+                .then(res => {
+                    
+                    const newArray = this.state.followersUsernames;
+                    const newwArray = newArray.push(res.data.username)
+                    this.setState({
+                        followersAmount: this.state.followersUsernames.length
+                    })
+                })
+            })
+
+        })
     }
 
     renderPosts = () =>
@@ -96,8 +132,8 @@ export default class profileMine extends Component {
                         </p>
                         
                         <hr/>
-                        <p className='seguidores'>6 seguidores</p>
-                        <p className='seguidores'>3 seguidos</p>
+                        <p className='seguidores'>{this.state.followersAmount} seguidores</p>
+                        <p className='seguidores'>{this.state.followingAmount} seguidos</p>
 
                         <hr/>
                         <h4>Se unió en:</h4>
